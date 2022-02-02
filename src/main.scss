@@ -1,0 +1,74 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+input,
+button {
+  cursor: pointer;
+  &:focus {
+    outline: 0;
+  }
+}
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #F6F8FB;
+  font-size: 14px;
+}
+
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.col-3 {
+  flex-basis: 25%;
+  max-width: 25%;
+  width: 25%;
+  padding: 0px 15px;
+}
+h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+$blue:#336CFB;
+
+.main {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  width: 100vw;
+  &__route {
+    height: calc(100vh - 88px);
+    width: 100%;
+    overflow-x:auto;
+    padding-right: 36px;
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $blue;
+    }
+  }
+  &__right {
+    flex-basis: calc(100% - 256px);
+    padding-left: 36px;
+  }
+}
+
+@import './assets/css/side.scss';
+@import './assets/css/top.scss';
+@import './assets/css/stat.scss';
+@import './assets/css/table.scss';
+@import './assets/css/form.scss';

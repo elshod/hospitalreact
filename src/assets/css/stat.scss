@@ -1,0 +1,22 @@
+.stat {
+    &__card{
+        background: rgba(0,10,255,0.1);
+        padding: 24px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 38px;
+        img {
+            margin-right: 24px;
+        }
+    }
+    &__title {
+        color: #25282B;
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+    &__count {
+        font-size: 18px;
+        color: #336CFB;
+    }
+}

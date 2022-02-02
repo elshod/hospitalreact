@@ -1,0 +1,21 @@
+{
+  "rooms": [
+    {
+      "name": "13",
+      "type": "Muolaja xonasi",
+      "floor": "4",
+      "depart": "Nevrologiya",
+      "status": "Bo`sh",
+      "id": 2
+    },
+    {
+      "name": "5",
+      "type": "Dam olish xonasi",
+      "floor": "5",
+      "depart": "Nevrologiya",
+      "status": "Bo`sh",
+      "id": 3
+    }
+  ],
+  "deletedrooms":[]
+}

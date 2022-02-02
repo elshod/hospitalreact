@@ -1,0 +1,53 @@
+.side {
+    background: #FFFFFF;
+    box-shadow: 4px 0px 16px rgba(16, 30, 115, 0.08);
+    flex-basis: 256px;
+    height: 100vh;
+    &__logo {
+        margin: 24px 0px 32px 24px;
+        display: inline-block;
+    }
+    &__title {
+        margin-left: 24px;  
+        color: #A0A4A8;
+        text-transform: uppercase;
+        font-size: 14px;
+        margin-bottom: 14px;
+    }
+    &__menu {
+
+
+        li {
+            padding: 0px 24px;
+            &:last-child {
+                border-top: 1px solid #E8E8E8;
+                margin-top: 56px;
+                padding-top: 8px;
+                a {
+                    color: $blue;
+                    img {
+                        filter:unset;
+                    }
+                }
+            }
+        }
+        a {
+            display: flex;
+            align-items: center;
+            color: #52575C;
+            font-weight: 700;
+            padding: 14px 0px;
+            
+            &:hover {
+                color: $blue;
+                img {
+                    filter: unset;
+                }
+            }
+            img {
+                margin-right: 12px;
+                filter: brightness(0);
+            }
+        }
+    }
+}
