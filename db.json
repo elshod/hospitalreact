@@ -2,20 +2,60 @@
   "rooms": [
     {
       "name": "13",
-      "type": "Muolaja xonasi",
-      "floor": "4",
-      "depart": "Nevrologiya",
+      "type": "Shifokor xonasi",
+      "floor": "2",
+      "depart": "2",
       "status": "Bo`sh",
+      "id": 1
+    },
+    {
+      "name": "12",
+      "type": "Shifokor xonasi",
+      "floor": "4",
+      "depart": "4",
+      "status": "Remont",
       "id": 2
     },
     {
-      "name": "5",
-      "type": "Dam olish xonasi",
-      "floor": "5",
-      "depart": "Nevrologiya",
+      "name": "1",
+      "type": "Muolaja xonasi",
+      "floor": "1",
+      "depart": "1",
       "status": "Bo`sh",
       "id": 3
     }
   ],
-  "deletedrooms":[]
+  "deletedrooms": [],
+  "departs": [
+    {
+      "name": "Nevrologiya",
+      "status": "Ish holatda",
+      "id": 1
+    },
+    {
+      "name": "Travmatologiya",
+      "status": "Ish holatda",
+      "id": 2
+    },
+    {
+      "name": "Urologiya",
+      "status": "Ish holatda",
+      "id": 3
+    },
+    {
+      "name": "Pediatriya",
+      "status": "Ish holatda",
+      "id": 4
+    },
+    {
+      "name": "test",
+      "status": "Ish holatda",
+      "id": 5
+    },
+    {
+      "name": "yana test",
+      "status": "Remont",
+      "id": 6
+    }
+  ]
 }

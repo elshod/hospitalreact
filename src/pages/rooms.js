@@ -5,11 +5,8 @@ import Table from "../component/table";
 const Rooms = () =>{
     const [isForm, setForm] = useState(false)
     const [data, setData] = useState([])
-    const [name, setName] = useState('')
-    const [type, setType] = useState('')
-    const [floor, setFloor] = useState('')
-    const [depart, setDepart] = useState('')
-    const [status, setStatus] = useState('Band')
+    const [departs, setDeparts] = useState([])
+
     const option = {
         id: 'ID',
         name: 'Xona raqami',
@@ -20,23 +17,36 @@ const Rooms = () =>{
     }
 
     useEffect(()=>{
+        axios.get('http://localhost:3000/departs')
+        .then(res => {
+            if (res.status === 200){
+                setDeparts(res.data)
+            }
+        })
         axios.get('http://localhost:3000/rooms')
         .then(res => {
             if (res.status === 200){
                 setData(res.data)
             }
         })
-    })
+        
+    },[])
 
     
 
     const addRoom=(e)=>{
         e.preventDefault()
-        axios.post('http://localhost:3000/rooms',{
-            name, type, floor, depart, status 
-        }).then(res => {
+        let form = document.forms.room 
+        let room = {}
+        let formData = new FormData(form)
+        formData.forEach((value,key)=>{
+            room[key] = value 
+        })
+        axios.post('http://localhost:3000/rooms',room)
+        .then(res => {
             if (res.status === 201){
                 setData([...data, res.data])
+                form.reset()
             }
         })
     }
@@ -53,14 +63,25 @@ const Rooms = () =>{
         })
     }
 
+    const parseDate = (data) => {
+        
+        data = data.map(room => {
+            const index = departs.findIndex(dep => dep.id == room.depart)
+            if (departs[index])
+                room.depart = departs[index].name
+            return room
+        })
+        return data
+    }
+
     return (
         <>
             <h1>Xonalar ro'yhati</h1>
             <Table 
-                data={data} 
+                data={parseDate(data)} 
                 option={option} 
                 url='rooms'
-                del={(id)=>{ deleteRoom(id) }}
+                del={(id)=>{deleteRoom(id)}}
             />
             <button 
                 className="addbtn" 
@@ -68,6 +89,7 @@ const Rooms = () =>{
                     +
             </button>
             <form 
+                name='room'
                 className={isForm?'add show':'add'}
                 onSubmit={(event)=>{addRoom(event)}}
                 >
@@ -82,20 +104,12 @@ const Rooms = () =>{
                     type='number' 
                     name="name" 
                     placeholder="Xona raqami"
-                    onInput={
-                        (event)=>{
-                            setName(event.target.value)
-                        }
-                    }
+                    required
                 />
                 <select name="type"
-                    onInput={
-                        (event)=>{
-                            setType(event.target.value)
-                        }
-                    }
+                    required
                 >
-                    <option value='0' selected disabled>Xona turi</option>
+                    <option value=''>Xona turi</option>
                     <option value='Muolaja xonasi'>Muolaja xonasi</option>
                     <option value='Shifokor xonasi'>Shifokor xonasi</option>
                     <option value='Ta`minot xonasi'>Ta`minot xonasi</option>
@@ -105,34 +119,27 @@ const Rooms = () =>{
                     type='number' 
                     name='floor' 
                     placeholder='Qavat'
-                    onInput={
-                        (event)=>{
-                            setFloor(event.target.value)
-                        }
-                    }    
+                    required
                 />
                 <select 
                     name="depart"
-                    onInput={
-                        (event)=>{
-                            setDepart(event.target.value)
-                        }
-                    }
+                    required
                     >
-                    <option defaultValue='0' selected disabled>Bo'limni tanlang</option>
-                    <option value='Nevrologiya'>Nevrologiya</option>
-                    <option value='Terapiya'>Terapiya</option>
-                    <option value='Travmatologiya'>Travmatologiya</option>
+                    <option value='' selected disabled>Bo'limni tanlang</option>
+                    {departs.map(dep=>(
+                        <option 
+                            key={dep.id}
+                            value={dep.id}
+                            >
+                                {dep.name}
+                        </option>
+                    ))}
                 </select>
                 <select 
                     name="status"
-                    onInput={
-                        (event)=>{
-                            setStatus(event.target.value)
-                        }
-                    }
+                    required
                     >
-                    <option defaultValue='0' selected disabled>Xona xolatini belgilang</option>
+                    <option value='' selected disabled>Xona xolatini belgilang</option>
                     <option value='Bo`sh'>Bo`sh</option>
                     <option value='Band'>Band</option>
                     <option value='Remont'>Remont</option>
